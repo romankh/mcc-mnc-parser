@@ -81,8 +81,9 @@ if __name__ == "__main__":
     html = response.read()
 
     print("Processing...")
-    html_soup = BeautifulSoup(html)
-    content = html_soup.find(id="mw-content-text")
+    html_soup = BeautifulSoup(html, "lxml")
+    content_container = html_soup.find(id="mw-content-text")
+    content = content_container.find("div", {"class" : "mw-parser-output"})
 
     mode = ""
     country = ""
